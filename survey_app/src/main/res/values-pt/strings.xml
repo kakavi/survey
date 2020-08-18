@@ -13,7 +13,7 @@
 <resources>
 <string name="accept_location">Gravar Localização</string>
 <string name="activity_not_found">Nenhuma atividade detectada por: %s</string>
-<string name="app_name">ODK-X Survey</string>
+<string name="app_name">Kenga Survey</string>
 <string name="cancel">Cancelar</string>
 <string name="cancel_location">Cancelar</string>
 <string name="change_language">Alterar Idioma</string>

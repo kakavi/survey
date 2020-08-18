@@ -15,7 +15,7 @@
 <!-- start pre restructuring -->
 <string name="accept_location">Record Location</string>
 <string name="activity_not_found">No activity found to handle: %s</string>
-<string name="app_name">ODK-X Survey</string>
+<string name="app_name">Kenga Survey</string>
 <string name="cancel">Cancel</string>
 <string name="cancel_location">Cancel</string>
 <string name="change_language">Change Language</string>
@@ -87,7 +87,7 @@
 <string name="select_another_image">Select Another Image</string>
 <string name="use_odk_default">Use Default Image</string>
 <string name="change_splash_path">Change Image</string>
-<string name="app_url">http://opendatakit.org</string>
+<string name="app_url">http://omnitech.co.ug</string>
 <string name="go_to_location">Go to Location</string>
 <string name="change_formlist_url">Form List Path (appended to Server URL)</string>
 <string name="protocol">Server Platform</string>
