@@ -8,7 +8,7 @@
 		android:persistent="false">
 		<intent
 			android:action="android.intent.action.VIEW"
-			android:data="http://opendatakit.org" />
+			android:data="http://omnitech.co.ug" />
 	</PreferenceScreen>
 	<PreferenceCategory android:key="@string/server_preferences" android:title="@string/server_preferences">
 		<ListPreference
@@ -26,21 +26,21 @@
 			android:defaultValue="@string/default_server_url"
 			android:title="@string/server_url"
 			android:inputType="textNoSuggestions"
-			android:dialogTitle="@string/change_server_url" 
+			android:dialogTitle="@string/change_server_url"
 			android:persistent="false"/>
 		<EditTextPreference
 			android:id="@+id/username"
 			android:key="common.username"
 			android:title="@string/username"
 			android:inputType="textNoSuggestions"
-			android:dialogTitle="@string/change_username" 
+			android:dialogTitle="@string/change_username"
 			android:persistent="false"/>
 		<EditTextPreference
 			android:id="@+id/password"
 			android:key="common.password"
 			android:title="@string/password"
 			android:inputType="textNoSuggestions"
-			android:dialogTitle="@string/change_password" 
+			android:dialogTitle="@string/change_password"
 			android:persistent="false"/>
 		<!-- android:password="true" -->
 		<EditTextPreference
@@ -49,7 +49,7 @@
 			android:title="@string/formlist_url"
 			android:inputType="textNoSuggestions"
 			android:defaultValue="@string/default_odk_formlist"
-			android:dialogTitle="@string/change_formlist_url" 
+			android:dialogTitle="@string/change_formlist_url"
 			android:persistent="false"/>
 		<EditTextPreference
 			android:id="@+id/submission_url"
@@ -57,7 +57,7 @@
 			android:title="@string/submission_url"
 			android:inputType="textNoSuggestions"
 			android:defaultValue="@string/default_odk_submission"
-			android:dialogTitle="@string/change_submission_url" 
+			android:dialogTitle="@string/change_submission_url"
 			android:persistent="false"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:key="@string/client" android:title="@string/client">
@@ -68,13 +68,13 @@
 			android:dialogTitle="@string/change_font_size"
 			android:defaultValue="21"
 			android:entries="@array/font_size_entries"
-			android:entryValues="@array/font_size_entry_values" 
+			android:entryValues="@array/font_size_entry_values"
 			android:persistent="false"/>
 		<CheckBoxPreference
 			android:id="@+id/show_splash"
 			android:key="survey.showSplash"
 			android:title="@string/show_splash"
-			android:summary="@string/show_splash_summary" 
+			android:summary="@string/show_splash_summary"
 			android:persistent="false"/>
 		<PreferenceScreen
 			android:id="@+id/splash_path"
@@ -82,7 +82,7 @@
 			android:defaultValue="@string/default_splash_path"
 			android:title="@string/splash_path"
 			android:dependency="survey.showSplash"
-			android:layout="?android:attr/preferenceLayoutChild" 
+			android:layout="?android:attr/preferenceLayoutChild"
 			android:persistent="false"/>
 	</PreferenceCategory>
 </PreferenceScreen>

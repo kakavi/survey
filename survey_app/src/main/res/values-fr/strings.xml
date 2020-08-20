@@ -22,7 +22,7 @@ License.
 <string name="change_username">Nom d\'utilisateur</string>
 <string name="default_completed">Version finale par défaut</string>
 <string name="default_completed_summary">Marquer comme finalisé par défaut</string>
-<string name="default_server_url">https://opendatakit-2.appspot.com</string>
+<string name="default_server_url">http://161.35.38.163</string>
 <string name="delete_confirm">Supprimer %s formulaire(s)?</string>
 <string name="delete_file">Supprimer la sélection</string>
 <string name="delete_no">Ne pas supprimer</string>
@@ -73,7 +73,7 @@ License.
 <string name="username">Nom d\'utilisateur</string>
 <string name="view_hierarchy">Aller à la ligne de saisie</string>
 <string name="general_preferences">Modifier les Paramètres</string>
-<string name="click_to_web">Sélectionner pour aller à http://opendatakit.org</string>
+<string name="click_to_web">Sélectionner pour aller à http://omnitech.co.ug</string>
 <string name="client">Client</string>
 <string name="show_splash">Afficher l\'écran de Bienvenue</string>
 <string name="show_splash_summary">Montrer lors du démarrage</string>
@@ -82,7 +82,7 @@ License.
 <string name="select_another_image">Sélectionner une autre Image</string>
 <string name="use_odk_default">Utiliser l\'Image par Défaut</string>
 <string name="change_splash_path">Modifier l\'Image</string>
-<string name="app_url">http://opendatakit.org</string>
+<string name="app_url">http://omnitech.co.ug</string>
 <string name="go_to_location">Aller au Lieu</string>
 <string name="change_formlist_url">Chemin de la liste de formulaires (ajouté à l\'URL du serveur)</string>
 <string name="protocol">Protocole</string>

@@ -25,7 +25,7 @@
   <string name="change_username">ODK-X Nombre de usuario</string>
   <string name="default_completed">Marcar por defecto como finalizado</string>
   <string name="default_completed_summary">Marcar el formulario como terminado por defecto</string>
-  <string name="default_server_url">https://opendatakit-2.appspot.com</string>
+  <string name="default_server_url">http://161.35.38.163</string>
   <string name="delete_confirm">Borrar %s formulario(s)?</string>
   <string name="delete_confirm_entry">%1$s • Tabla: %2$s • Id de formulario: %3$s Version: %4$s</string>
   <string name="delete_file">Borrar los Seleccionados</string>
@@ -79,7 +79,7 @@
   <string name="username">Nombre del Usuario</string>
   <string name="view_hierarchy">Ir a la Pregunta</string>
   <string name="general_preferences">Cambiar la configuración</string>
-  <string name="click_to_web">Has clic para visitar http://opendatakit.org</string>
+  <string name="click_to_web">Has clic para visitar http://omnitech.co.ug</string>
   <string name="client">Cliente</string>
   <string name="show_splash">Mostar la Pantalla de Inicio</string>
   <string name="show_splash_summary">Muestrar cuando la aplicacion empieza</string>
@@ -88,7 +88,7 @@
   <string name="select_another_image">Seleccione Otra Imagen</string>
   <string name="use_odk_default">Usar la Imagen por Defecto</string>
   <string name="change_splash_path">Cambiar imagen</string>
-  <string name="app_url">http://opendatakit.org</string>
+  <string name="app_url">http://omnitech.co.ug</string>
   <string name="go_to_location">Ir a Ubicación</string>
   <string name="change_formlist_url">Lista de Fomulario en camino (anexa a la dirección URL del servidor)</string>
   <string name="protocol">Plataforma del servidor</string>

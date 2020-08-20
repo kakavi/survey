@@ -22,7 +22,7 @@
 <string name="change_username">ODK-X Username</string>
 <string name="default_completed">Siap kirim</string>
 <string name="default_completed_summary">Tandai formulir telah siap kirim secara otomatis</string>
-<string name="default_server_url">https://opendatakit-2.appspot.com</string>
+<string name="default_server_url">http://161.35.38.163</string>
 <string name="delete_confirm">Hapus %s formulir?</string>
 <string name="delete_file">Hapus</string>
 <string name="delete_no">Jangan hapus</string>
@@ -73,7 +73,7 @@
 <string name="username">Nama pengguna</string>
 <string name="view_hierarchy">Risalah</string>
 <string name="general_preferences">Pengaturan</string>
-<string name="click_to_web">Tap untuk berkunjung ke http://opendatakit.org</string>
+<string name="click_to_web">Tap untuk berkunjung ke http://omnitech.co.ug</string>
 <string name="client">Klien</string>
 <string name="show_splash">"Perlihatkan tampilan pembuka"</string>
 <string name="show_splash_summary">Tampilkan pada awal aplikasi berjalan</string>
@@ -82,7 +82,7 @@
 <string name="select_another_image">Pilih gambar lainnya</string>
 <string name="use_odk_default">Gunakan gambar awal</string>
 <string name="change_splash_path">Ubah gambar</string>
-<string name="app_url">http://opendatakit.org</string>
+<string name="app_url">http://omnitech.co.ug</string>
 <string name="go_to_location">Pilih lokasi</string>
 <string name="change_formlist_url">Tautan formulir (appended to Server URL)</string>
 <string name="protocol">Server Platform</string>
