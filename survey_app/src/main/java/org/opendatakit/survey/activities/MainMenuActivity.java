@@ -352,7 +352,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
   }
 
   public void scanForConflictAllTables() {
-    
+
     UserDbInterface db = ((Survey) getApplication()).getDatabase();
     if ( db != null ) {
       List<TableHealthInfo> info;
@@ -372,7 +372,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
           WebLogger.getLogger(appName).printStackTrace(e);
         }
       }
-      
+
       if ( info != null ) {
 
         Bundle conflictTables = new Bundle();
@@ -384,7 +384,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
               conflictTables.putString(tableInfo.getTableId(), tableInfo.getTableId());
           }
         }
-        
+
         mConflictTables = conflictTables;
       }
     }
@@ -537,7 +537,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
   @Override
   public String getUrlBaseLocation(boolean ifChanged) {
     // Find the formPath for the framework formDef.json
-    File frameworkFormDef = new File( ODKFileUtils.getFormFolder(appName, 
+    File frameworkFormDef = new File( ODKFileUtils.getFormFolder(appName,
         FormsColumns.COMMON_BASE_FORM_ID, FormsColumns.COMMON_BASE_FORM_ID), "formDef.json");
 
     // formPath always begins ../ -- strip that off to get explicit path
@@ -840,8 +840,8 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       item = menu.add(Menu.NONE, MENU_PREFERENCES, Menu.NONE, getString(R.string.general_preferences));
       item.setIcon(R.drawable.ic_settings_black_24dp).setShowAsAction(showOption);
 
-      item = menu.add(Menu.NONE, MENU_ABOUT, Menu.NONE, getString(R.string.about));
-      item.setIcon(R.drawable.ic_info_outline_black_24dp).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+/*      item = menu.add(Menu.NONE, MENU_ABOUT, Menu.NONE, getString(R.string.about));
+      item.setIcon(R.drawable.ic_info_outline_black_24dp).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);*/
     } else {
       getSupportActionBar().hide();
     }
@@ -857,7 +857,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
         Intent syncIntent = new Intent();
         syncIntent.setComponent(new ComponentName(
             IntentConsts.Sync.APPLICATION_NAME,
-            IntentConsts.Sync.ACTIVITY_NAME));
+                "org.opendatakit.services.MainActivity"));
         syncIntent.setAction(Intent.ACTION_DEFAULT);
         Bundle bundle = new Bundle();
         bundle.putString(IntentConsts.INTENT_KEY_APP_NAME, appName);
@@ -1139,7 +1139,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       trans.addToBackStack(currentFragmentType.name());
     }
 
-    
+
     // and see if we should re-initialize...
     if ((currentFragmentType != ScreenList.INITIALIZATION_DIALOG)
         && ((Survey) getApplication()).shouldRunInitializationTask(getAppName())) {
@@ -1147,7 +1147,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       // and immediately clear the should-run flag...
       ((Survey) getApplication()).clearRunInitializationTask(getAppName());
       // OK we should swap to the InitializationFragment view
-      // this will skip the transition to whatever screen we were trying to 
+      // this will skip the transition to whatever screen we were trying to
       // go to and will instead show the InitializationFragment view. We
       // restore to the desired screen via the setFragmentToShowNext()
       //
@@ -1473,12 +1473,12 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       return "Exception";
     }
   }
-  
+
   @Override
   public void queueActionOutcome(String outcome) {
     queuedActions.addLast(outcome);
   }
-  
+
   @Override
   public void queueUrlChange(String hash) {
     try {
@@ -1488,10 +1488,10 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       e.printStackTrace();
     }
   }
-  
+
   @Override
   public String viewFirstQueuedAction() {
-    String outcome = 
+    String outcome =
         queuedActions.isEmpty() ? null : queuedActions.getFirst();
     return outcome;
   }
