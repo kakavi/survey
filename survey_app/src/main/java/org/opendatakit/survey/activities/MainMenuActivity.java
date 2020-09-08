@@ -36,6 +36,7 @@ import org.json.JSONObject;
 import org.opendatakit.activities.BaseActivity;
 import org.opendatakit.application.CommonApplication;
 import org.opendatakit.consts.IntentConsts;
+import org.opendatakit.consts.RequestCodeConsts;
 import org.opendatakit.database.data.OrderedColumns;
 import org.opendatakit.database.data.UserTable;
 import org.opendatakit.database.queries.BindArgs;
@@ -130,6 +131,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
   private static final int MENU_PREFERENCES = Menu.FIRST + 1;
   private static final int MENU_EDIT_INSTANCE = Menu.FIRST + 2;
   private static final int MENU_ABOUT = Menu.FIRST + 3;
+  private static final int MENU_HOME = Menu.FIRST + 4;
 
   // activity callback codes
   private static final int HANDLER_ACTIVITY_CODE = 20;
@@ -834,6 +836,10 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
     if (currentFragmentType != ScreenList.WEBKIT) {
       getSupportActionBar().show();
 
+
+      item = menu.add(Menu.NONE, MENU_HOME, Menu.NONE, getString(R.string.about));
+      item.setIcon(R.drawable.ic_home_black_24dp).setShowAsAction(showOption);
+
       item = menu.add(Menu.NONE, MENU_CLOUD_FORMS, Menu.NONE, getString(R.string.get_forms));
       item.setIcon(R.drawable.ic_cached_black_24dp).setShowAsAction(showOption);
 
@@ -875,12 +881,27 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       // launch the intent in Services
       Intent preferenceIntent = new Intent();
       preferenceIntent.setComponent(new ComponentName(IntentConsts.AppProperties.APPLICATION_NAME,
-          IntentConsts.AppProperties.ACTIVITY_NAME));
+              IntentConsts.AppProperties.ACTIVITY_NAME));
       preferenceIntent.setAction(Intent.ACTION_DEFAULT);
       Bundle bundle = new Bundle();
       bundle.putString(IntentConsts.INTENT_KEY_APP_NAME, appName);
       preferenceIntent.putExtras(bundle);
       this.startActivityForResult(preferenceIntent, APP_PROPERTIES_ACTIVITY_CODE);
+      return true;
+    } else if (item.getItemId() == MENU_HOME) {
+      try {
+        Intent intent = new Intent();
+        intent.setComponent(
+                new ComponentName("org.opendatakit.tables", "org.opendatakit.tables.activities.Launcher"));
+        intent.setAction(Intent.ACTION_DEFAULT);
+        Bundle bundle = new Bundle();
+        bundle.putString(IntentConsts.INTENT_KEY_APP_NAME, appName);
+        intent.putExtras(bundle);
+        this.startActivityForResult(intent, RequestCodeConsts.RequestCodes.LAUNCH_SYNC);
+      } catch (ActivityNotFoundException e) {
+        WebLogger.getLogger(appName).printStackTrace(e);
+        Toast.makeText(this, "Everflow is not installed", Toast.LENGTH_LONG).show();
+      }
       return true;
     } else if (item.getItemId() == MENU_ABOUT) {
       swapToFragmentView(ScreenList.ABOUT_MENU);
