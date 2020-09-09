@@ -36,6 +36,7 @@ import org.json.JSONObject;
 import org.opendatakit.activities.BaseActivity;
 import org.opendatakit.application.CommonApplication;
 import org.opendatakit.consts.IntentConsts;
+import org.opendatakit.consts.RequestCodeConsts;
 import org.opendatakit.database.data.OrderedColumns;
 import org.opendatakit.database.data.UserTable;
 import org.opendatakit.database.queries.BindArgs;
@@ -130,6 +131,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
   private static final int MENU_PREFERENCES = Menu.FIRST + 1;
   private static final int MENU_EDIT_INSTANCE = Menu.FIRST + 2;
   private static final int MENU_ABOUT = Menu.FIRST + 3;
+  private static final int MENU_HOME = Menu.FIRST + 4;
 
   // activity callback codes
   private static final int HANDLER_ACTIVITY_CODE = 20;
@@ -352,7 +354,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
   }
 
   public void scanForConflictAllTables() {
-    
+
     UserDbInterface db = ((Survey) getApplication()).getDatabase();
     if ( db != null ) {
       List<TableHealthInfo> info;
@@ -372,7 +374,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
           WebLogger.getLogger(appName).printStackTrace(e);
         }
       }
-      
+
       if ( info != null ) {
 
         Bundle conflictTables = new Bundle();
@@ -384,7 +386,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
               conflictTables.putString(tableInfo.getTableId(), tableInfo.getTableId());
           }
         }
-        
+
         mConflictTables = conflictTables;
       }
     }
@@ -537,7 +539,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
   @Override
   public String getUrlBaseLocation(boolean ifChanged) {
     // Find the formPath for the framework formDef.json
-    File frameworkFormDef = new File( ODKFileUtils.getFormFolder(appName, 
+    File frameworkFormDef = new File( ODKFileUtils.getFormFolder(appName,
         FormsColumns.COMMON_BASE_FORM_ID, FormsColumns.COMMON_BASE_FORM_ID), "formDef.json");
 
     // formPath always begins ../ -- strip that off to get explicit path
@@ -834,14 +836,18 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
     if (currentFragmentType != ScreenList.WEBKIT) {
       getSupportActionBar().show();
 
+
+      item = menu.add(Menu.NONE, MENU_HOME, Menu.NONE, getString(R.string.about));
+      item.setIcon(R.drawable.ic_home_black_24dp).setShowAsAction(showOption);
+
       item = menu.add(Menu.NONE, MENU_CLOUD_FORMS, Menu.NONE, getString(R.string.get_forms));
       item.setIcon(R.drawable.ic_cached_black_24dp).setShowAsAction(showOption);
 
       item = menu.add(Menu.NONE, MENU_PREFERENCES, Menu.NONE, getString(R.string.general_preferences));
       item.setIcon(R.drawable.ic_settings_black_24dp).setShowAsAction(showOption);
 
-      item = menu.add(Menu.NONE, MENU_ABOUT, Menu.NONE, getString(R.string.about));
-      item.setIcon(R.drawable.ic_info_outline_black_24dp).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+/*      item = menu.add(Menu.NONE, MENU_ABOUT, Menu.NONE, getString(R.string.about));
+      item.setIcon(R.drawable.ic_info_outline_black_24dp).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);*/
     } else {
       getSupportActionBar().hide();
     }
@@ -857,7 +863,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
         Intent syncIntent = new Intent();
         syncIntent.setComponent(new ComponentName(
             IntentConsts.Sync.APPLICATION_NAME,
-            IntentConsts.Sync.ACTIVITY_NAME));
+                "org.opendatakit.services.MainActivity"));
         syncIntent.setAction(Intent.ACTION_DEFAULT);
         Bundle bundle = new Bundle();
         bundle.putString(IntentConsts.INTENT_KEY_APP_NAME, appName);
@@ -875,12 +881,27 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       // launch the intent in Services
       Intent preferenceIntent = new Intent();
       preferenceIntent.setComponent(new ComponentName(IntentConsts.AppProperties.APPLICATION_NAME,
-          IntentConsts.AppProperties.ACTIVITY_NAME));
+              IntentConsts.AppProperties.ACTIVITY_NAME));
       preferenceIntent.setAction(Intent.ACTION_DEFAULT);
       Bundle bundle = new Bundle();
       bundle.putString(IntentConsts.INTENT_KEY_APP_NAME, appName);
       preferenceIntent.putExtras(bundle);
       this.startActivityForResult(preferenceIntent, APP_PROPERTIES_ACTIVITY_CODE);
+      return true;
+    } else if (item.getItemId() == MENU_HOME) {
+      try {
+        Intent intent = new Intent();
+        intent.setComponent(
+                new ComponentName("org.opendatakit.tables", "org.opendatakit.tables.activities.Launcher"));
+        intent.setAction(Intent.ACTION_DEFAULT);
+        Bundle bundle = new Bundle();
+        bundle.putString(IntentConsts.INTENT_KEY_APP_NAME, appName);
+        intent.putExtras(bundle);
+        this.startActivityForResult(intent, RequestCodeConsts.RequestCodes.LAUNCH_SYNC);
+      } catch (ActivityNotFoundException e) {
+        WebLogger.getLogger(appName).printStackTrace(e);
+        Toast.makeText(this, "Everflow is not installed", Toast.LENGTH_LONG).show();
+      }
       return true;
     } else if (item.getItemId() == MENU_ABOUT) {
       swapToFragmentView(ScreenList.ABOUT_MENU);
@@ -1139,7 +1160,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       trans.addToBackStack(currentFragmentType.name());
     }
 
-    
+
     // and see if we should re-initialize...
     if ((currentFragmentType != ScreenList.INITIALIZATION_DIALOG)
         && ((Survey) getApplication()).shouldRunInitializationTask(getAppName())) {
@@ -1147,7 +1168,7 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       // and immediately clear the should-run flag...
       ((Survey) getApplication()).clearRunInitializationTask(getAppName());
       // OK we should swap to the InitializationFragment view
-      // this will skip the transition to whatever screen we were trying to 
+      // this will skip the transition to whatever screen we were trying to
       // go to and will instead show the InitializationFragment view. We
       // restore to the desired screen via the setFragmentToShowNext()
       //
@@ -1473,12 +1494,12 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       return "Exception";
     }
   }
-  
+
   @Override
   public void queueActionOutcome(String outcome) {
     queuedActions.addLast(outcome);
   }
-  
+
   @Override
   public void queueUrlChange(String hash) {
     try {
@@ -1488,10 +1509,10 @@ public class MainMenuActivity extends BaseActivity implements IOdkSurveyActivity
       e.printStackTrace();
     }
   }
-  
+
   @Override
   public String viewFirstQueuedAction() {
-    String outcome = 
+    String outcome =
         queuedActions.isEmpty() ? null : queuedActions.getFirst();
     return outcome;
   }
